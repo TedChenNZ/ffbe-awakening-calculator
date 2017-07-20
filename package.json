@@ -3,14 +3,46 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "mobx": "^3.2.1",
+    "mobx-react": "^4.2.2",
     "react": "^15.6.1",
+    "react-css-themr": "^2.1.2",
     "react-dom": "^15.6.1",
-    "react-scripts": "1.0.10"
+    "react-toolbox": "^2.0.0-beta.12"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "test": "cross-env CI=true react-scripts test --env=jsdom",
+    "test:watch": "react-scripts test --env=jsdom",
+    "test:coverage": "react-scripts test --env=jsdom --coverage",
+    "eject": "react-scripts eject",
+    "lint": "eslint src/**/*"
+  },
+  "jest": {
+    "coverageThreshold": {
+      "global": {
+        "branches": 1,
+        "functions": 1,
+        "lines": 1,
+        "statements": 1
+      }
+    }
+  },
+  "devDependencies": {
+    "chai": "^4.1.0",
+    "chai-enzyme": "^0.8.0",
+    "customised-react-scripts": "^0.0.24",
+    "enzyme": "^2.9.1",
+    "eslint": "3.x",
+    "eslint-config-airbnb": "^15.0.2",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-jsx-a11y": "5.x",
+    "eslint-plugin-react": "^7.1.0",
+    "mocha": "^3.4.2",
+    "prop-types": "^15.5.10",
+    "sinon": "^2.3.8",
+    "stylelint": "^8.0.0",
+    "stylelint-config-standard": "^17.0.0"
   }
 }
