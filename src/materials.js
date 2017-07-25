@@ -1,4 +1,15 @@
-import { MATERIAL_TYPES, MATERIAL_TIERS } from './constants';
+const MATERIAL_TYPES = {
+  POWER: 'Power',
+  SUPPORT: 'Support',
+};
+
+const MATERIAL_TIERS = {
+  T1: 't1',
+  T2: 't2',
+  T3: 't3',
+  T4: 't4',
+  T5: 't5',
+};
 
 const MATERIALS = {
   270002600: {
@@ -23,4 +34,8 @@ const MATERIALS = {
   },
 };
 
-module.exports = MATERIALS;
+module.exports = {
+  MATERIAL_TIERS,
+  MATERIAL_TYPES,
+  MATERIALS,
+};

@@ -1,6 +1,6 @@
 import { expect } from 'chai';
-import { convertEnhancement } from '../utils';
-import { MATERIAL_TYPES, MATERIAL_TIERS } from '../constants';
+import { convertEnhancement, convertEnhancements } from '../utils';
+import { MATERIAL_TYPES, MATERIAL_TIERS } from '../materials';
 
 const enhancements = {
   202980001: {
@@ -99,6 +99,13 @@ describe('utils', () => {
         expect(actual).to.have.property(MATERIAL_TIERS.T4).which.equals(4);
         expect(actual).to.have.property(MATERIAL_TIERS.T5).which.equals(2);
       });
+    });
+  });
+  describe('convertEnhancements()', () => {
+    it('converts all enhancements', () => {
+      const actual = convertEnhancements(enhancements);
+      expect(Object.keys(actual)).to.have.lengthOf(Object.keys(enhancements).length);
+      expect(actual).to.have.property('202980002').to.deep.equal(convertEnhancement(enhancements[202980002], 202980002));
     });
   });
 });

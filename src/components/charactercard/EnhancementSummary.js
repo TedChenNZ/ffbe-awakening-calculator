@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { table } from './styles.scss';
 
 export default class EnhancementSummary extends Component {
@@ -6,7 +7,7 @@ export default class EnhancementSummary extends Component {
     enhancements: [],
   }
   static propTypes = {
-    enhancements: React.PropTypes.arrayOf(React.PropTypes.object),
+    enhancements: PropTypes.arrayOf(PropTypes.object),
   }
   typeToColor = (type) => {
     switch (type) {
