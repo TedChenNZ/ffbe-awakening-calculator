@@ -1,8 +1,6 @@
 import { observable, computed, action, toJS } from 'mobx';
-import { convertEnhancements } from '../../utils';
-
-
-
+import { convertEnhancements, updateSummary } from '../../utils';
+import { SUMMARY } from '../../constants';
 
 export default class CharacterEnhancementsStore {
   @observable _character = {};
@@ -27,28 +25,12 @@ export default class CharacterEnhancementsStore {
 
   removeFromCart(id) {
     this._cart = this._cart.filter(item => item.id !== id.toString());
-    const enhancement = this._enhancements[id.toString()];
   }
 
   @computed get summary() {
-    const summary = {
-      power: {t1: 0, t2: 0, t3: 0, t4: 0, t5: 0,},
-      support: {t1: 0, t2: 0, t3: 0, t4: 0, t5: 0,},
-      healing: {t1: 0, t2: 0, t3: 0, t4: 0, t5: 0,},
-      guard: {t1: 0, t2: 0, t3: 0, t4: 0, t5: 0,},
-      tech: {t1: 0, t2: 0, t3: 0, t4: 0, t5: 0,},
-      black: {t1: 0, t2: 0, t3: 0, t4: 0, t5: 0,},
-      white: {t1: 0, t2: 0, t3: 0, t4: 0, t5: 0,},
-      gil: 0,
-    };
-
+    let summary = JSON.parse(JSON.stringify(SUMMARY)); // Clone SUMMARY
     this._cart.forEach((enhancement) => {
-      summary[enhancement.type.toLowerCase()].t1 += enhancement.t1;
-      summary[enhancement.type.toLowerCase()].t2 += enhancement.t2;
-      summary[enhancement.type.toLowerCase()].t3 += enhancement.t3;
-      summary[enhancement.type.toLowerCase()].t4 += enhancement.t4;
-      summary[enhancement.type.toLowerCase()].t5 += enhancement.t5;
-      summary.gil += enhancement.gil;
+      summary = updateSummary(summary, enhancement);
     });
     return summary;
   }

@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import { convertEnhancement, convertEnhancements } from '../utils';
-import { MATERIAL_TYPES, MATERIAL_TIERS } from '../materials';
+import { MATERIAL_TYPES, MATERIAL_TIERS } from '../data/materials';
 
 const enhancements = {
   202980001: {

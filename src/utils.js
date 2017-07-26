@@ -1,4 +1,4 @@
-import { MATERIALS } from './materials';
+import { MATERIALS } from './data/materials';
 
 export function enhancementToType(enhancement) {
   try {
@@ -32,6 +32,43 @@ export function convertEnhancements(rawEnhancements) {
     enhancements[key] = convertEnhancement(rawEnhancements[key], key);
   });
   return enhancements;
+}
+
+
+export function convertUnit(rawUnit, id = '') {
+  const unit = {};
+  unit.name = rawUnit.name;
+  unit.id = id.toString();
+  return unit;
+}
+
+export function convertUnits(rawUnits) {
+  const units = {};
+  Object.keys(rawUnits).forEach((key) => {
+    units[key] = convertUnit(rawUnits[key], key);
+  });
+  return units;
+}
+
+export function convertRawData(rawUnits, rawEnhancements) {
+  const data = {};
+  const units = convertUnits(rawUnits);
+  Object.keys(rawEnhancements).forEach((unitId) => {
+    data[unitId] = JSON.parse(JSON.stringify(units[unitId]));
+    data[unitId].enhancements = convertEnhancements(rawEnhancements[unitId]);
+  });
+  return data;
+}
+
+export function updateSummary(summary, enhancement) {
+  const updatedSummary = summary;
+  updatedSummary[enhancement.type.toLowerCase()].t1 += enhancement.t1;
+  updatedSummary[enhancement.type.toLowerCase()].t2 += enhancement.t2;
+  updatedSummary[enhancement.type.toLowerCase()].t3 += enhancement.t3;
+  updatedSummary[enhancement.type.toLowerCase()].t4 += enhancement.t4;
+  updatedSummary[enhancement.type.toLowerCase()].t5 += enhancement.t5;
+  updatedSummary.gil += enhancement.gil;
+  return updatedSummary;
 }
 
 export default {
