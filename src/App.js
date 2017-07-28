@@ -1,20 +1,16 @@
 import React, { Component } from 'react';
 import './App.css';
-import CharacterCard from './components/charactercard';
-import { getData } from './data';
 import Store from './store';
+import CardGrid from './components/cardgrid';
 
-const store = new Store(getData());
+const store = new Store();
+store.addToCart(100000102);
 
 class App extends Component {
   render() {
-    console.log(store);
     return (
       <div className="App">
-        <CharacterCard
-          name="Ace (GL)"
-          sprite="Ace.png"
-        />
+        <CardGrid store={store} />
       </div>
     );
   }

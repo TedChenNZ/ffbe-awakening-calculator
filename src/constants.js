@@ -1,13 +1,13 @@
 const constants = {
   SUMMARY: {
-    power: { t1: 0, t2: 0, t3: 0, t4: 0, t5: 0 },
-    support: { t1: 0, t2: 0, t3: 0, t4: 0, t5: 0 },
-    healing: { t1: 0, t2: 0, t3: 0, t4: 0, t5: 0 },
-    guard: { t1: 0, t2: 0, t3: 0, t4: 0, t5: 0 },
-    tech: { t1: 0, t2: 0, t3: 0, t4: 0, t5: 0 },
-    black: { t1: 0, t2: 0, t3: 0, t4: 0, t5: 0 },
-    white: { t1: 0, t2: 0, t3: 0, t4: 0, t5: 0 },
-    green: { t1: 0, t2: 0, t3: 0, t4: 0, t5: 0 },
+    power: { T1: 0, T2: 0, T3: 0, T4: 0, T5: 0 },
+    support: { T1: 0, T2: 0, T3: 0, T4: 0, T5: 0 },
+    healing: { T1: 0, T2: 0, T3: 0, T4: 0, T5: 0 },
+    guard: { T1: 0, T2: 0, T3: 0, T4: 0, T5: 0 },
+    tech: { T1: 0, T2: 0, T3: 0, T4: 0, T5: 0 },
+    black: { T1: 0, T2: 0, T3: 0, T4: 0, T5: 0 },
+    white: { T1: 0, T2: 0, T3: 0, T4: 0, T5: 0 },
+    green: { T1: 0, T2: 0, T3: 0, T4: 0, T5: 0 },
     gil: 0,
   },
 };

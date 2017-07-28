@@ -62,11 +62,11 @@ export function convertRawData(rawUnits, rawEnhancements) {
 
 export function updateSummary(summary, enhancement) {
   const updatedSummary = summary;
-  updatedSummary[enhancement.type.toLowerCase()].t1 += enhancement.t1;
-  updatedSummary[enhancement.type.toLowerCase()].t2 += enhancement.t2;
-  updatedSummary[enhancement.type.toLowerCase()].t3 += enhancement.t3;
-  updatedSummary[enhancement.type.toLowerCase()].t4 += enhancement.t4;
-  updatedSummary[enhancement.type.toLowerCase()].t5 += enhancement.t5;
+  updatedSummary[enhancement.type.toLowerCase()].T1 += enhancement.T1 || 0;
+  updatedSummary[enhancement.type.toLowerCase()].T2 += enhancement.T2 || 0;
+  updatedSummary[enhancement.type.toLowerCase()].T3 += enhancement.T3 || 0;
+  updatedSummary[enhancement.type.toLowerCase()].T4 += enhancement.T4 || 0;
+  updatedSummary[enhancement.type.toLowerCase()].T5 += enhancement.T5 || 0;
   updatedSummary.gil += enhancement.gil;
   return updatedSummary;
 }

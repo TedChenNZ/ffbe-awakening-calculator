@@ -4,10 +4,10 @@ import { table } from './styles.scss';
 
 export default class EnhancementSummary extends Component {
   static defaultProps = {
-    enhancements: [],
+    summary: [],
   }
   static propTypes = {
-    enhancements: PropTypes.arrayOf(PropTypes.object),
+    summary: PropTypes.object,
   }
   typeToColor = (type) => {
     switch (type) {
@@ -20,7 +20,7 @@ export default class EnhancementSummary extends Component {
     }
   }
   render() {
-    if (!this.props.enhancements) {
+    if (!this.props.summary) {
       return null;
     }
     return (
@@ -37,16 +37,22 @@ export default class EnhancementSummary extends Component {
             </tr>
           </thead>
           <tbody>
-            {/** this.props.enhancements.map(item => (
-              <tr key={item.type} style={{ color: this.typeToColor(item.type) }}>
-                <td>{item.type.toUpperCase()}</td>
-                <td>{item.t1}</td>
-                <td>{item.t2}</td>
-                <td>{item.t3}</td>
-                <td>{item.t4}</td>
-                <td>{item.t5}</td>
-              </tr>
-            )) **/}
+            { this.props.summary && Object.keys(this.props.summary).map((type) => {
+              const materials = this.props.summary[type];
+              if (materials.T1) {
+                return (
+                  <tr key={type} style={{ color: this.typeToColor(type) }}>
+                    <td>{type.toUpperCase()}</td>
+                    <td>{materials.T1}</td>
+                    <td>{materials.T2}</td>
+                    <td>{materials.T3}</td>
+                    <td>{materials.T4}</td>
+                    <td>{materials.T5}</td>
+                  </tr>
+                );
+              }
+              return null;
+            }) }
           </tbody>
         </table>
       </div>

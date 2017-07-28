@@ -1,22 +1,19 @@
-import { observable, computed } from 'mobx';
+import { observable, computed, action } from 'mobx';
 import { SUMMARY } from './constants';
+import UnitStore from './store/UnitStore';
+import data from './unitEnhancementData';
 
 export default class Store {
   @observable _cart = [];
   @observable _inventory = {};
-  @observable _data = {};
-
-  constructor(data) {
-    this._data = data;
-  }
 
   reset() {
     this._cart = [];
   }
 
-  addToCart(id) {
-    const enhancement = this._enhancements[id.toString()];
-    this._cart.push(enhancement);
+  addToCart(id, server = 'GL') {
+    const unitStore = new UnitStore(id, server);
+    this._cart.push(unitStore);
   }
 
   removeFromCart(id) {
@@ -37,6 +34,20 @@ export default class Store {
 
   @computed get inventory() {
     return this._inventory;
+  }
+
+  @computed get saveFile() {
+    const saveFile = {};
+    saveFile.cart = this._cart.map(item => item.saveFile);
+    saveFile.inventory = this._inventory;
+    return saveFile;
+  }
+
+  @action loadSaveFile(saveFile) {
+    const cart = saveFile.cart.map(unitSaveFile =>
+      new UnitStore(unitSaveFile.unitId, unitSaveFile.server, unitSaveFile.cart));
+    this._cart = cart;
+    this._inventory = saveFile.inventory;
   }
 }
 
